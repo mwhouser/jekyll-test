@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<h2>Test</h2>
+
+{% assign pages = site.html_pages %}
+  {% for page in pages %}
+<url>
+    <loc>{{ page.url  }}</loc>
+    {% if page.last_modified_at %}
+    <lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+    {% endif %}
+</url>
+  {% endfor %}

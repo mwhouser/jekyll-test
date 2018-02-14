@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<a href="/feed.xml">Subscribe via RSS</a>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Categories</div>
+	<div class="list-group">
+		{% capture cats %}
+		{% for category in site.categories %}
+		{{ category[0] | downcase }},{{ category[0] }}{% unless forloop.last %}|{% endunless %}
+		{% endfor %}
+		{% endcapture %}
+		{% assign sortedcats = cats | split:'|' | sort %}
+
+		{% for category in sortedcats %}
+		{% assign catlist = category | split:',' %}
+		<a class="list-group-item" href="/{{ catlist[0] | slugify }}">{{ catlist[1] }}</a>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Archives</div>
+	<div class="list-group">
+		{% for post in site.posts %}
+		{% assign thisyear = post.date | date: "%B %Y" %}
+		{% assign prevyear = post.previous.date | date: "%B %Y" %}
+		{% if thisyear != prevyear %}
+		<a class="list-group-item" href="/{{ post.date | date:"%Y" }}/{{ post.date | date:"%m" }}">{{ thisyear }}</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>

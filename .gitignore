@@ -1,0 +1,11 @@
+*.suo
+.bundle/install.log
+_build
+
+_site
+
+.sass-cache
+
+.jekyll-metadata
+
+.vs/

@@ -1,0 +1,25 @@
+﻿{% include header.html %}
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9 h2345-left">
+				<h2>{{ page.date | date: "%B %Y" }}</h2>
+				<ul class="archive-list">
+					{% for post in page.posts %}
+					<li>
+						<a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> -
+						<span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-3">
+				{% include sidebar.html %}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+{% include footer.html %}

@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<h2>Archives</h2>
+
+<ul class="archive-list">
+	{% for post in site.posts %}
+	{% assign thisyear = post.date | date: "%B %Y" %}
+	{% assign prevyear = post.previous.date | date: "%B %Y" %}
+	{% if thisyear != prevyear %}
+	<li>
+		<a href="/{{ post.date | date:"%Y" }}/{{ post.date | date:"%m" }}">{{ thisyear }}</a>
+	</li>
+	{% endif %}
+	{% endfor %}
+</ul>
+
+<h2>Categories</h2>
+
+{% capture cats %}
+{% for category in site.categories %}
+{{ category[0] | downcase }},{{ category[0] }}{% unless forloop.last %}|{% endunless %}
+{% endfor %}
+{% endcapture %}
+{% assign sortedcats = cats | split:'|' | sort %}
+
+<ul class="archive-list">
+	{% for category in sortedcats %}
+	{% assign catlist = category | split:',' %}
+	<li>
+		<a href="/{{ catlist[0] | slugify }}">{{ catlist[1] }}</a>
+	</li>
+	{% endfor %}
+</ul>
